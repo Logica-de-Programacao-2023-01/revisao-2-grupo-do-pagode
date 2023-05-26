@@ -211,28 +211,3 @@ func TestMergeStudentData(t *testing.T) {
 		})
 	}
 }
-
-type Student struct {
-	Name     string
-	Age      int
-	Subjects map[string]float64
-}
-
-func MergeStudentData(studentData1 map[string]Student, studentData2 map[string]Student) map[string]Student {
-	for c1 := range studentData1 {
-		for c2 := range studentData2 {
-			if c1 == c2 {
-				for i1 := range studentData1[c1].Subjects {
-					for i2 := range studentData2[c2].Subjects {
-						if i1 == i2 {
-							studentData1[c1].Subjects[i1] = studentData2[c2].Subjects[i2]
-						} else {
-							studentData1[c1].Subjects[i2] = studentData2[c2].Subjects[i2]
-						}
-					}
-				}
-			}
-		}
-	}
-	return studentData1
-}
