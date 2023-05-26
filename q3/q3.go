@@ -1,6 +1,9 @@
-package q3
+package main
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 //Você está desenvolvendo um sistema de gerenciamento de estoque para uma loja. Cada produto possui um código único, nome,
 //preço unitário e quantidade em estoque. Você decidiu usar uma struct para representar as informações de cada produto.
@@ -19,7 +22,14 @@ type Product struct {
 	Quantity int
 }
 
-func UpdateStock(product *Product, sales map[string]int) error {
-	// Seu código aqui
-	return errors.New("Not implemented yet")
+func UpdateStock(product *Product, sales map[string]int) (int, error) {
+	for i := range sales {
+		if i == product.Name {
+			product.Quantity -= sales[i]
+		}
+	}
+	if product == nil {
+		return 0, errors.New("Not implemented yet")
+	}
+	return product.Quantity, nil
 }
