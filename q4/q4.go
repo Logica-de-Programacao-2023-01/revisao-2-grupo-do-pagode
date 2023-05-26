@@ -1,4 +1,6 @@
-package q4
+package main
+
+import "fmt"
 
 //Você está construindo um sistema de gerenciamento de estudantes em uma escola. Cada estudante possui um ID único, nome,
 //notas em diferentes disciplinas e uma média geral. Você decidiu usar uma struct para representar as informações de cada
@@ -19,5 +21,13 @@ type Student struct {
 }
 
 func UpdateAverage(students map[int]*Student) {
-	// Seu código aqui
+	for i := range students {
+		if i == students[i].ID {
+			var soma float64 = 0
+			for c := range students[i].Grades {
+				soma += students[i].Grades[c]
+			}
+			students[i].Average = soma / float64(len(students[i].Grades))
+		}
+	}
 }
